@@ -62,10 +62,10 @@ window.renderStatistics = function (ctx, names, times) {
   for (var i = 0; i < names.length; i++) {
 
     if (names[i] === myName) {
-      renderBar (myColor, names[i], times[i], i);
+      renderBar(myColor, names[i], times[i], i);
     } else {
       var randomBlue = 'hsl(240,' + Math.random().toFixed(2) * 100 + '%' + ',50%)';
-      renderBar (randomBlue, names[i], times[i], i);
+      renderBar(randomBlue, names[i], times[i], i);
     }
   }
 };
