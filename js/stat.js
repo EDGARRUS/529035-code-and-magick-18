@@ -43,30 +43,37 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, cloudShadowColor);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, white);
 
-  ctx.fillStyle = black;
-  ctx.font = textFont;
-  ctx.fillText(textVictory, CLOUD_X + GAP, textVictoryGap);
-  ctx.fillText(textResult, CLOUD_X + GAP, textResultGap);
-
-  var maxTime = getMaxElement(times);
-
-  var renderMainPlayerBar = function (name, time, numberBar) {
+  var renderTextBeforeBar = function (textVictory, textResult) {
     ctx.fillStyle = black;
+    ctx.font = textFont;
+    ctx.fillText(textVictory, CLOUD_X + GAP, textVictoryGap);
+    ctx.fillText(textResult, CLOUD_X + GAP, textResultGap);
+  };
+
+  var renderDescriptionBar = function (name, color, numberBar, time) {
+    ctx.fillStyle = color;
     ctx.fillText(Math.round(time), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, CLOUD_Y + playerStatGap - (barHeight * time) / maxTime);
     ctx.fillText(name, CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, playerNameGap);
+  };
 
-    ctx.fillStyle = myColor;
+  var renderVisualBar = function (color, numberBar, time) {
+    ctx.fillStyle = color;
     ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, CLOUD_Y + BAR_CHANGE_Y - (barHeight * time) / maxTime, BAR_WIDTH, (barHeight * time) / maxTime);
+  };
+
+  var renderMainPlayerBar = function (name, time, numberBar) {
+    renderDescriptionBar(name, black, numberBar, time);
+    renderVisualBar(myColor, numberBar, time);
   };
 
   var renderOtherPlayerBar = function (name, time, numberBar) {
-    ctx.fillStyle = black;
-    ctx.fillText(Math.round(time), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, CLOUD_Y + playerStatGap - (barHeight * time) / maxTime);
-    ctx.fillText(name, CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, playerNameGap);
-
-    ctx.fillStyle = randomBlue;
-    ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, CLOUD_Y + BAR_CHANGE_Y - (barHeight * time) / maxTime, BAR_WIDTH, (barHeight * time) / maxTime);
+    renderDescriptionBar(name, black, numberBar, time);
+    renderVisualBar(randomBlue, numberBar, time);
   };
+
+  renderTextBeforeBar(textVictory, textResult);
+
+  var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
 
