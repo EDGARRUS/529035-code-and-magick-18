@@ -50,22 +50,31 @@ window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-  var renderBar = function (colorBar, name, time, numberBar) {
+  var renderMainPlayerBar = function (name, time, numberBar) {
     ctx.fillStyle = black;
     ctx.fillText(Math.round(time), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, CLOUD_Y + playerStatGap - (barHeight * time) / maxTime);
     ctx.fillText(name, CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, playerNameGap);
 
-    ctx.fillStyle = colorBar;
+    ctx.fillStyle = myColor;
+    ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, CLOUD_Y + BAR_CHANGE_Y - (barHeight * time) / maxTime, BAR_WIDTH, (barHeight * time) / maxTime);
+  };
+
+  var renderOtherPlayerBar = function (name, time, numberBar) {
+    ctx.fillStyle = black;
+    ctx.fillText(Math.round(time), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, CLOUD_Y + playerStatGap - (barHeight * time) / maxTime);
+    ctx.fillText(name, CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, playerNameGap);
+
+    ctx.fillStyle = randomBlue;
     ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * numberBar, CLOUD_Y + BAR_CHANGE_Y - (barHeight * time) / maxTime, BAR_WIDTH, (barHeight * time) / maxTime);
   };
 
   for (var i = 0; i < names.length; i++) {
 
     if (names[i] === myName) {
-      renderBar(myColor, names[i], times[i], i);
+      renderMainPlayerBar(names[i], times[i], i);
     } else {
       var randomBlue = 'hsl(240,' + Math.random().toFixed(2) * 100 + '%' + ',50%)';
-      renderBar(randomBlue, names[i], times[i], i);
+      renderOtherPlayerBar(names[i], times[i], i);
     }
   }
 };
