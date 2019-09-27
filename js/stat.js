@@ -43,11 +43,11 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, cloudShadowColor);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, white);
 
-  var renderTextBeforeBar = function (DescriptionVictory, DescriptionResult) {
+  var renderTextBeforeBar = function (descriptionVictory, descriptionResult) {
     ctx.fillStyle = black;
     ctx.font = textFont;
-    ctx.fillText(DescriptionVictory, CLOUD_X + GAP, textVictoryGap);
-    ctx.fillText(DescriptionResult, CLOUD_X + GAP, textResultGap);
+    ctx.fillText(descriptionVictory, CLOUD_X + GAP, textVictoryGap);
+    ctx.fillText(descriptionResult, CLOUD_X + GAP, textResultGap);
   };
 
   var renderDescriptionBar = function (name, color, numberBar, time) {
