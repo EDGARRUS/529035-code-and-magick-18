@@ -5,7 +5,7 @@ function arrayRandElement(arr) {
   return arr[rand];
 }
 
-var generateData = function (counter) {
+var generateMages = function (counter) {
   var firstNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var secondNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
   var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -23,7 +23,7 @@ var generateData = function (counter) {
   return magesStat;
 };
 
-var magesData = generateData(4);
+var allMages = generateMages(4);
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -51,7 +51,7 @@ var addSimiliarMages = function (magesArray) {
   similarListElement.appendChild(similarMagesFragment);
 };
 
-addSimiliarMages(magesData);
+addSimiliarMages(allMages);
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
