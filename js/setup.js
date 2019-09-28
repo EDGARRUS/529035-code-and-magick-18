@@ -29,7 +29,7 @@ var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
 var similarListElement = document.querySelector('.setup-similar-list');
-var similarMageTemplate = document.getElementById('#similar-wizard-template')
+var similarMageTemplate = document.getElementById('similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
