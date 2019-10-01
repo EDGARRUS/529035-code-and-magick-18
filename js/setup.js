@@ -93,9 +93,6 @@ var onPopupEscPress = function (evt) {
   }
 };
 
-// Окно в начале открыто, поэтому навешиваю сразу эвент на ESC, так как событие openPopup еще не произошло
-document.addEventListener('keydown', onPopupEscPress);
-
 var openPopup = function () {
   userDialog.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
@@ -112,53 +109,31 @@ var getSetupOpen = function () {
   return document.querySelector('.setup-open');
 };
 
-var setupOpen = getSetupOpen();
-setupOpen.addEventListener('click', openPopup);
-
-
 var getSetupOpenIcon = function () {
   return document.querySelector('.setup-open-icon');
 };
-
-var setupOpenIcon = getSetupOpenIcon();
-setupOpenIcon.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    openPopup();
-  }
-});
 
 var getSetupClose = function () {
   return document.querySelector('.setup-close');
 };
 
-var setupClose = getSetupClose();
-setupClose.addEventListener('click', closePopup);
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePopup();
-  }
-});
-
 var getSetupUserName = function () {
   return document.querySelector('.setup-user-name');
 };
 
-var setupUserName = getSetupUserName();
-
-setupUserName.addEventListener('focusin', function () {
+var onElementFocusin = function () {
   setupUserName.classList.add('focused');
-});
+};
 
-setupUserName.addEventListener('focusout', function () {
+var onElementFocusout = function () {
   setupUserName.classList.remove('focused');
-});
+};
 
 var getSetupMage = function () {
   return document.querySelector('.setup-wizard');
 };
 
-var onCoatClick = function (chosenMage) {
-  var mageCoat = chosenMage.querySelector('.wizard-coat');
+var onCoatClick = function () {
   var coatColors = [
     'rgb(101, 137, 164)',
     'rgb(241, 43, 107)',
@@ -167,13 +142,10 @@ var onCoatClick = function (chosenMage) {
     'rgb(215, 210, 55)',
     'rgb(0, 0, 0)'
   ];
-  mageCoat.addEventListener('click', function () {
-    mageCoat.style.fill = arrayRandElement(coatColors);
-  });
+  mageCoat.style.fill = arrayRandElement(coatColors);
 };
 
-var onEyesClick = function (chosenMage) {
-  var mageEyes = chosenMage.querySelector('.wizard-eyes');
+var onEyesClick = function () {
   var eyesColors = [
     'black',
     'red',
@@ -181,16 +153,14 @@ var onEyesClick = function (chosenMage) {
     'yellow',
     'green'
   ];
-  mageEyes.addEventListener('click', function () {
-    mageEyes.style.fill = arrayRandElement(eyesColors);
-  });
+  mageEyes.style.fill = arrayRandElement(eyesColors);
 };
 
 var getMageFireball = function () {
   return document.querySelector('.setup-fireball-wrap');
 };
 
-var onFireballClick = function (mageFireballWrap) {
+var onFireballClick = function () {
   var fireballColors = [
     '#ee4830',
     '#30a8ee',
@@ -198,14 +168,44 @@ var onFireballClick = function (mageFireballWrap) {
     '#e848d5',
     '#e6e848'
   ];
-  mageFireballWrap.addEventListener('click', function () {
-    mageFireballWrap.style.background = arrayRandElement(fireballColors);
-  });
+  mageFireball.style.background = arrayRandElement(fireballColors);
 };
 
+// Окно в начале открыто, поэтому навешиваю сразу эвент на ESC, так как событие openPopup еще не произошло
+document.addEventListener('keydown', onPopupEscPress);
+
+var setupOpen = getSetupOpen();
+var setupOpenIcon = getSetupOpenIcon();
+var setupClose = getSetupClose();
+var setupUserName = getSetupUserName();
 var setupMage = getSetupMage();
-var MageFireball = getMageFireball();
-onCoatClick(setupMage);
-onEyesClick(setupMage);
-onFireballClick(MageFireball);
+var mageEyes = setupMage.querySelector('.wizard-eyes');
+var mageCoat = setupMage.querySelector('.wizard-coat');
+var mageFireball = getMageFireball();
+
+var addAllEventListener = function () {
+  setupOpen.addEventListener('click', openPopup);
+
+  setupOpenIcon.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      openPopup();
+    }
+  });
+
+  setupClose.addEventListener('click', closePopup);
+  setupClose.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      closePopup();
+    }
+  });
+
+  setupUserName.addEventListener('focusin', onElementFocusin);
+  setupUserName.addEventListener('focusout', onElementFocusout);
+
+  mageEyes.addEventListener('click', onEyesClick);
+  mageCoat.addEventListener('click', onCoatClick);
+  mageFireball.addEventListener('click', onFireballClick);
+};
+
+addAllEventListener();
 
