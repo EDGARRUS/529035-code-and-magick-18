@@ -4,6 +4,13 @@
 
   var userDialog = document.querySelector('.setup');
   userDialog.classList.remove('hidden');
+  var defaultCoordYUserDialog = (userDialog.offsetTop) + 'px';
+  var defaultCoordXUserDialog = (userDialog.offsetLeft) + 'px';
+
+  var setDefaultCoordUserDialog = function () {
+    userDialog.style.top = defaultCoordYUserDialog;
+    userDialog.style.left = defaultCoordXUserDialog;
+  };
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
@@ -19,6 +26,7 @@
   var closePopup = function () {
     if (!setupUserName.classList.contains('focused')) {
       userDialog.classList.add('hidden');
+      setDefaultCoordUserDialog();
       document.removeEventListener('keydown', onPopupEscPress);
     }
   };
