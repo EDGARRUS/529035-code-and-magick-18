@@ -15,7 +15,7 @@
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
   var onPopupEscPress = function (evt) {
-    window.util.isEscEvent(evt, closePopup);
+    window.codeAndMagicApp.util.isEscEvent(evt, closePopup);
   };
 
   var openPopup = function () {
@@ -72,16 +72,16 @@
     setupOpen.addEventListener('click', openPopup);
 
     setupOpenIcon.addEventListener('keydown', function (evt) {
-      window.util.isEnterEvent(evt, openPopup);
+      window.codeAndMagicApp.util.isEnterEvent(evt, openPopup);
     });
 
     dialogHandler.addEventListener('mousedown', function (evt) {
-      window.dragging.mouseDraggingElement(evt, dialogHandler, userDialog);
+      window.codeAndMagicApp.dragging.mouseDraggingElement(evt, dialogHandler, userDialog);
     });
 
     setupClose.addEventListener('click', closePopup);
     setupClose.addEventListener('keydown', function (evt) {
-      window.util.isEnterEvent(evt, closePopup);
+      window.codeAndMagicApp.util.isEnterEvent(evt, closePopup);
     });
 
     setupUserName.addEventListener('focusin', onElementFocusin);

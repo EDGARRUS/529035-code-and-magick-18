@@ -2,7 +2,7 @@
 
 (function () {
 
-  window.dragging = {
+  window.codeAndMagicApp.dragging = {
 
     mouseDraggingElement: function (evt, handler, element) {
 

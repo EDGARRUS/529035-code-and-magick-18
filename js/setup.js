@@ -41,9 +41,9 @@
   var mageFireball = getMageFireball();
 
   var addColorizeMageEventListener = function () {
-    window.colorize(mageEyes, eyesColors);
-    window.colorize(mageCoat, coatColors);
-    window.colorize(mageFireball, fireballColors);
+    window.codeAndMagicApp.colorize(mageEyes, eyesColors);
+    window.codeAndMagicApp.colorize(mageCoat, coatColors);
+    window.codeAndMagicApp.colorize(mageFireball, fireballColors);
   };
 
   addColorizeMageEventListener();

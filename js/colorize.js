@@ -2,9 +2,9 @@
 
 (function () {
 
-  window.colorize = function (element, colors) {
+  window.codeAndMagicApp.colorize = function (element, colors) {
     element.addEventListener('click', function () {
-      var color = window.util.arrayRandElement(colors);
+      var color = window.codeAndMagicApp.util.arrayRandElement(colors);
       if (element.tagName.toLowerCase() === 'div') {
         element.style.backgroundColor = color;
       } else {

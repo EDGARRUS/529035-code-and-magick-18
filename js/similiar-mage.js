@@ -40,9 +40,9 @@
 
     for (var i = 1; i <= counter; i++) {
       magesStat.push({
-        name: window.util.arrayRandElement(firstNames) + ' ' + window.util.arrayRandElement(secondNames),
-        coatColor: window.util.arrayRandElement(coatColors),
-        eyesColor: window.util.arrayRandElement(eyesColors),
+        name: window.codeAndMagicApp.util.arrayRandElement(firstNames) + ' ' + window.codeAndMagicApp.util.arrayRandElement(secondNames),
+        coatColor: window.codeAndMagicApp.util.arrayRandElement(coatColors),
+        eyesColor: window.codeAndMagicApp.util.arrayRandElement(eyesColors),
       });
     }
 
