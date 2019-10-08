@@ -12,8 +12,6 @@
     userDialog.style.left = defaultCoordXUserDialog;
   };
 
-  userDialog.querySelector('.setup-similar').classList.remove('hidden');
-
   var onPopupEscPress = function (evt) {
     window.codeAndMagicApp.util.isEscEvent(evt, closePopup);
   };
@@ -89,5 +87,16 @@
   };
 
   addAllDialogEventListener();
+
+  var successSubmitForm = function () {
+    userDialog.classList.add('hidden');
+  };
+
+  var formSetup = userDialog.querySelector('.setup-wizard-form');
+  formSetup.addEventListener('submit', function (evt) {
+    window.codeAndMagicApp.backend.save(new FormData(formSetup), successSubmitForm, window.codeAndMagicApp.util.errorHandler);
+
+    evt.preventDefault();
+  });
 
 })();
