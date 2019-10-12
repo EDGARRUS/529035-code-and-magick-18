@@ -82,15 +82,15 @@
     addSimiliarMage(filterArrayMages);
   };
 
-  window.codeAndMagicApp.similiarMage.onEyesChange = function (color) {
+  window.codeAndMagicApp.similiarMage.onEyesChange = window.codeAndMagicApp.debounce(function (color) {
     newEyesColor = color;
     updateMages();
-  };
+  });
 
-  window.codeAndMagicApp.similiarMage.onCoatChange = function (color) {
+  window.codeAndMagicApp.similiarMage.onCoatChange = window.codeAndMagicApp.debounce(function (color) {
     newCoatColor = color;
     updateMages();
-  };
+  });
 
   window.codeAndMagicApp.backend.load(addSimiliarMages, window.codeAndMagicApp.util.errorHandler);
 
