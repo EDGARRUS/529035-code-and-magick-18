@@ -42,6 +42,7 @@
 
   var newEyesColor;
   var newCoatColor;
+  var mages = [];
 
   var getRank = function (mage) {
     var rank = 0;
@@ -68,7 +69,7 @@
 
   var updateMages = function () {
 
-    var filterArrayMages = window.codeAndMagicApp.backend.mages.sort(function (left, right) {
+    var filterArrayMages = mages.sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
       if (rankDiff === 0) {
         rankDiff = namesComparator(left.name, right.name);
@@ -92,6 +93,11 @@
     updateMages();
   });
 
-  window.codeAndMagicApp.backend.load(addSimiliarMages, window.codeAndMagicApp.util.errorHandler);
+  var successHandler = function (magesArray) {
+    mages = magesArray;
+    addSimiliarMages(mages);
+  };
+
+  window.codeAndMagicApp.backend.load(successHandler, window.codeAndMagicApp.util.errorHandler);
 
 })();

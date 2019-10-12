@@ -12,7 +12,6 @@
         if (xhr.status !== 200) {
           onError('Статус ответа:' + xhr.status + ' ' + xhr.statusText);
         } else {
-          window.codeAndMagicApp.backend.mages = xhr.response;
           onLoad(xhr.response);
         }
       });
